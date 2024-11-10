@@ -1,0 +1,33 @@
+//方法一 双指针
+//使用双指针的方法，可以将空间复杂度降至 O(1)。
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode A=headA,B=headB;
+        while(A!=B){
+            A=A!=null?A.next:headB;
+            B=B!=null?B.next:headA;
+
+        }
+        return A;
+    }
+}
+//哈希集合
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
+            return null;
+        }
+        HashSet<ListNode> list = new HashSet<ListNode>();
+        while (headA != null) {
+            list.add(headA);
+            headA = headA.next;
+        }
+        while (headB != null) {
+            if ((list.contains(headB))) {
+                return headB;
+            }
+            headB = headB.next;
+        }
+        return null;
+    }
+}
